@@ -53,6 +53,7 @@ const quizData = [
 ];
 
 const quiz = document.getElementById("quize");
+const scores = document.querySelector(".score");
 
 const ansEle = document.querySelectorAll(".ans");
 const [questionEle, option_1, option_2, option_3, option_4] = document.querySelectorAll(" #question, .option_1, .option_2, .option_3, .option_4 ");
@@ -63,7 +64,9 @@ let score = 0;
 
 const loadquiz = () => {
    const { question, options } = quizData[currentQuiz];
+
    questionEle.innerText = `${currentQuiz + 1}: ${question}`;
+   scores.innerText = ` Score: ${score}/${quizData.length} `;
 
    options.forEach(
       (currentoption, index) => (window[`option_${index + 1}`].innerText = currentoption)
@@ -73,8 +76,9 @@ const loadquiz = () => {
 loadquiz();
 
 const getselectedOption = () => {
+
    let ansElement = Array.from(ansEle);
-   ansElement.findIndex((currentEle, index) => currentEle.checked);
+   return ansElement.findIndex((currentEle) => currentEle.checked);
 };
 
 const deselectedAns = () => {
@@ -104,4 +108,4 @@ submitBtn.addEventListener('click', () => {
         <button class="btn" onclick="location.reload()">Play Again</button>
       </div>`
    }
-})
+});
